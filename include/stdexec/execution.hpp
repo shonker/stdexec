@@ -2560,7 +2560,7 @@ namespace stdexec {
               tag_invoke_result_t<upon_error_t, _Scheduler, __member_t<_Self, _Sender>, __member_t<_Self, _Fun>>;
 
           // NOT TO SPEC
-          template <scheduler _Scheduler, __decays_to<__sender> _Self, receiver _Receiver, class _Tag = upon_error_t>
+          template <scheduler _Scheduler, __decays_to<__t> _Self, receiver _Receiver, class _Tag = upon_error_t>
             requires sender_to<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver>
           friend auto tag_invoke(__connect_transform_t, _Scheduler __sched, _Self&& __self, _Receiver __rcvr)
             -> connect_result_t<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver> {
@@ -2703,7 +2703,7 @@ namespace stdexec {
               tag_invoke_result_t<upon_stopped_t, _Scheduler, __member_t<_Self, _Sender>, __member_t<_Self, _Fun>>;
 
           // NOT TO SPEC
-          template <scheduler _Scheduler, __decays_to<__sender> _Self, receiver _Receiver, class _Tag = upon_stopped_t>
+          template <scheduler _Scheduler, __decays_to<__t> _Self, receiver _Receiver, class _Tag = upon_stopped_t>
             requires sender_to<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver>
           friend auto tag_invoke(__connect_transform_t, _Scheduler __sched, _Self&& __self, _Receiver __rcvr)
             -> connect_result_t<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver> {
@@ -2875,7 +2875,7 @@ namespace stdexec {
               tag_invoke_result_t<bulk_t, _Scheduler, __member_t<_Self, _Sender>, _Shape, __member_t<_Self, _Fun>>;
 
           // NOT TO SPEC
-          template <scheduler _Scheduler, __decays_to<__sender> _Self, receiver _Receiver, class _Tag = bulk_t>
+          template <scheduler _Scheduler, __decays_to<__t> _Self, receiver _Receiver, class _Tag = bulk_t>
             requires sender_to<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver>
           friend auto tag_invoke(__connect_transform_t, _Scheduler __sched, _Self&& __self, _Receiver __rcvr)
             -> connect_result_t<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver> {
@@ -3817,7 +3817,7 @@ namespace stdexec {
               tag_invoke_result_t<_LetTag, _Scheduler, __member_t<_Self, _Sender>, __member_t<_Self, _Fun>>;
 
           // NOT TO SPEC
-          template <scheduler _Scheduler, __decays_to<__sender> _Self, receiver _Receiver, class _Tag = _LetTag>
+          template <scheduler _Scheduler, __decays_to<__t> _Self, receiver _Receiver, class _Tag = _LetTag>
             requires sender_to<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver>
           friend auto tag_invoke(__connect_transform_t, _Scheduler __sched, _Self&& __self, _Receiver __rcvr)
             -> connect_result_t<__connect_transform_sender_t<_Self, _Scheduler>, _Receiver> {
