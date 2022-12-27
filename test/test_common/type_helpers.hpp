@@ -48,7 +48,10 @@ template <typename... Ts>
 struct type_array {};
 
 //! Used as a default empty context
-struct empty_env {};
+struct empty_env {
+  using __t = empty_env;
+  using __id = empty_env;
+};
 
 //! Check that the value_types of a sender matches the expected type
 template <typename ExpectedValType, typename Env = empty_env, typename S>

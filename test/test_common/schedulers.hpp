@@ -179,12 +179,22 @@ struct error_scheduler {
     }
   };
 
+  error_scheduler() = default;
+  error_scheduler(E err)
+    : err_((E&&) err)
+  {}
+  error_scheduler(error_scheduler&& that) noexcept = default;
+  error_scheduler(const error_scheduler& that) noexcept
+    : err_(that.err_)
+  {}
+
+  friend my_sender tag_invoke(ex::schedule_t, const error_scheduler& self) { return {(E &&) self.err_}; }
+
+  friend bool operator==(const error_scheduler&, const error_scheduler&) noexcept { return true; }
+  friend bool operator!=(const error_scheduler&, const error_scheduler&) noexcept { return false; }
+
+private:
   E err_{};
-
-  friend my_sender tag_invoke(ex::schedule_t, error_scheduler self) { return {(E &&) self.err_}; }
-
-  friend bool operator==(error_scheduler, error_scheduler) noexcept { return true; }
-  friend bool operator!=(error_scheduler, error_scheduler) noexcept { return false; }
 };
 
 //! Scheduler that returns a sender that always completes with cancellation.
